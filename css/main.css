@@ -1,36 +1,55 @@
-h1 {
-    color: green;
+body {
+    text-align: center;
+    background-color: #c8e3ff;
 }
+
+/* .continer {} */
+
+
+
 
 .info {
     background-color: #b1bac3;
+    margin: 20px auto;
     width: 400px;
     height: 150px;
+    padding: 10px 20px 40px;
+}
+
+h1 {
+    color: rgb(15, 77, 74);
 }
 
 .timer {
     height: 20px;
     width: 90px;
-    border: 3px black solid;
+    border: 2px black solid;
     padding: 5px;
-    border-radius: 10px;
-    text-align: center;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.level {
+    padding: 5px 7px;
+    margin: 3px;
+}
+
+.restart {
+    display: none;
+}
+
+table {
+    margin: 20px auto;
 }
 
 .board {
     background-color: gray;
 
+
 }
-
-
 
 .board td {
     width: 50px;
     height: 50px;
-    text-align: center;
     transition: 0.5s;
-}
-
-.restart {
-    display: none;
 }

@@ -10,35 +10,42 @@
 </head>
 
 <body onload="onInitGame()">
-    <h1>Mine Sweeper</h1>
+    <div class="continer">
 
-    <div class="info">
-        <div class="timer">timer:
-            <span class="min">00</span>
-            :
-            <span class="sec">00</span>
+        <div class="info">
+            <h1>Mine Sweeper</h1>
+            <div class="timer">timer: <span class="time">
+                    <span class="min">00</span>
+                    :
+                    <span class="sec">00</span>
+                </span>
+            </div>
+
+            <div class="flags">
+                flags : <span></span>
+            </div>
+
+            <button class="level" onclick="onClickLevel(4, 2)">Beginner (4x4)</button>
+            <button class="level" onclick="onClickLevel(8, 14)">Medium (8x8) </button>
+            <button class="level" onclick="onClickLevel(12, 32)">Expert (12x12)</button>
+
+            <button class="restart" onclick="initGame()">Restart</button>
         </div>
-        <div class="level">
-            <button onclick="onClickLevel(4, 2)">Beginner (4x4)</button>
-            <button onclick="onClickLevel(8, 14)">Medium (8x8) </button>
-            <button onclick="onClickLevel(12, 32)">Expert (12x12)</button>
-        </div>
 
+        <table>
 
+            <tbody class="board"></tbody>
 
-        <!-- פה יהיה את הניקוד הטיימר והסמיילים -->
-        <button class="restart" onclick="initGame()">Restart</button>
+        </table>
     </div>
-    <table>
-
-        <tbody class="board"></tbody>
-
-    </table>
 
 
 
     <script src="js/util.js"></script>
+    <script src="js/mines.js"></script>
     <script src="js/main.js"></script>
 </body>
 
 </html>
+
+<!-- oncontextmenu="return false" -->
