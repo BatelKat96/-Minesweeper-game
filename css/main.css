@@ -4,29 +4,22 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* .continer {} */
-
-
-
-
 .continer {
     background-color: #5caefa9d;
     margin: 20px auto;
     width: 600px;
-    height: 340px;
+    height: 350px;
     padding: 10px 20px 15px;
 }
 
 h1 {
     color: rgb(0, 0, 0);
-
 }
 
 hr {
     margin-bottom: 20px;
     border: 1px solid white;
 }
-
 
 .timer,
 .count-flags,
@@ -50,7 +43,7 @@ hr {
     font-size: 14px;
     height: 10px;
     width: 100px;
-    padding: 10px 7px 15px;
+    padding: 10px 7px 20px;
     margin: 10px 30px;
 }
 
@@ -61,7 +54,6 @@ hr {
     font-size: 14px;
     border-radius: 5px;
     color: white;
-    /* border-color: white; */
 }
 
 .modal {
@@ -77,10 +69,9 @@ hr {
     width: 60px;
     height: 60px;
     font-size: 30px;
-    overflow: hidden;
-    /* margin-top: 5px; */
     background-color: white;
     border-color: aliceblue;
+    display: inline-block;
 }
 
 table {
