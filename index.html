@@ -10,41 +10,42 @@
 </head>
 
 <body onload="onInitGame()">
-    <div class="continer">
-
-        <div class="info">
+    <div class="">
+        <div class="continer">
             <h1>Mine Sweeper</h1>
             <hr>
-            <div class="timer-flags">
-                <div class="timer">timer: <span class="time">
+            <div class="info">
+                <div class="timer">Timer: <span class="time">
                         <span class="min">00</span>
                         :
                         <span class="sec">00</span>
                     </span>
                 </div>
 
-                <div class="flags">
-                    flags : <span>2</span>
-                </div>
             </div>
 
             <div class="levels">
-                <button class="level" onclick="onClickLevel(4, 2)">Beginner (4x4)</button>
-                <button class="level" onclick="onClickLevel(8, 14)">Medium (8x8) </button>
-                <button class="level" onclick="onClickLevel(12, 32)">Expert (12x12)</button>
+                <button class="level" onclick="onClickLevel(4, 2, 1)">Beginner (4x4)</button>
+                <button class="level" onclick="onClickLevel(8, 14, 3)">Medium (8x8) </button>
+                <button class="level" onclick="onClickLevel(12, 32, 3)">Expert (12x12)</button>
             </div>
 
+            <div class="count-flags">
+                Flags : <span>2</span>
+            </div>
+            <button class="restart" onclick="onInitGame()">😄</button>
+            <div class="count-lives">
+                lives : <span>2</span>
+            </div>
+
+
             <div class="modal">
-                <p class="msg"> </p>
-                <p> Would you like to play again?</p>
-                <button class="restart" onclick="onInitGame()">Restart</button>
+                <p><span></span> Would you like to play again?</p>
             </div>
         </div>
 
         <table>
-
             <tbody class="board"></tbody>
-
         </table>
     </div>
 
@@ -56,5 +57,3 @@
 </body>
 
 </html>
-
-<!-- oncontextmenu="return false" -->

@@ -9,7 +9,7 @@ body {
 
 
 
-.info {
+.continer {
     background-color: #5caefa9d;
     margin: 20px auto;
     width: 600px;
@@ -29,27 +29,30 @@ hr {
 
 
 .timer,
-.flags {
-    height: 20px;
-    width: 150px;
+.count-flags,
+.count-lives {
     border: 2px black solid;
-    padding: 10px;
     border-radius: 5px;
-    margin: 10px;
-    /* font-size: 14px; */
     background-color: aliceblue;
     font-weight: bold;
     display: inline-block;
-
 }
 
-/* .timer {
-    float: right;
+.timer {
+    margin: 10px;
+    height: 20px;
+    width: 150px;
+    padding: 10px;
 }
 
-.flags {
-    float: left; */
-/* } */
+.count-flags,
+.count-lives {
+    font-size: 14px;
+    height: 10px;
+    width: 100px;
+    padding: 10px 7px 15px;
+    margin: 10px 30px;
+}
 
 .level {
     padding: 10px;
@@ -63,30 +66,33 @@ hr {
 
 .modal {
     display: none;
-    /* background-color: rgb(252, 181, 181); */
-    /* color: black; */
-    /* padding: 20px 10px 40px 10px; */
     text-align: center;
 }
 
-.modal .msg {
-    margin-top: 0;
+.modal span {
+    font-weight: bold;
 }
 
-
+.restart {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    overflow: hidden;
+    /* margin-top: 5px; */
+    background-color: white;
+    border-color: aliceblue;
+}
 
 table {
-    margin: 20px auto;
+    margin: 30px auto;
 }
 
 .board {
     background-color: gray;
-
-
 }
 
 .board td {
     width: 50px;
     height: 50px;
-    transition: 0.5s;
+    transition: 0.2s;
 }
