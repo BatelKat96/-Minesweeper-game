@@ -1,6 +1,7 @@
 body {
     text-align: center;
     background-color: #c8e3ff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* .continer {} */
@@ -9,34 +10,70 @@ body {
 
 
 .info {
-    background-color: #b1bac3;
+    background-color: #5caefa9d;
     margin: 20px auto;
-    width: 400px;
-    height: 150px;
-    padding: 10px 20px 40px;
+    width: 600px;
+    height: 340px;
+    padding: 10px 20px 15px;
 }
 
 h1 {
-    color: rgb(15, 77, 74);
+    color: rgb(0, 0, 0);
+
 }
 
-.timer {
+hr {
+    margin-bottom: 20px;
+    border: 1px solid white;
+}
+
+
+.timer,
+.flags {
     height: 20px;
-    width: 90px;
+    width: 150px;
     border: 2px black solid;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
     margin: 10px;
+    /* font-size: 14px; */
+    background-color: aliceblue;
+    font-weight: bold;
+    display: inline-block;
+
 }
+
+/* .timer {
+    float: right;
+}
+
+.flags {
+    float: left; */
+/* } */
 
 .level {
-    padding: 5px 7px;
-    margin: 3px;
+    padding: 10px;
+    margin: 20px 10px;
+    background-color: rgb(0, 119, 255);
+    font-size: 14px;
+    border-radius: 5px;
+    color: white;
+    /* border-color: white; */
 }
 
-.restart {
+.modal {
     display: none;
+    /* background-color: rgb(252, 181, 181); */
+    /* color: black; */
+    /* padding: 20px 10px 40px 10px; */
+    text-align: center;
 }
+
+.modal .msg {
+    margin-top: 0;
+}
+
+
 
 table {
     margin: 20px auto;

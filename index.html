@@ -14,22 +14,31 @@
 
         <div class="info">
             <h1>Mine Sweeper</h1>
-            <div class="timer">timer: <span class="time">
-                    <span class="min">00</span>
-                    :
-                    <span class="sec">00</span>
-                </span>
+            <hr>
+            <div class="timer-flags">
+                <div class="timer">timer: <span class="time">
+                        <span class="min">00</span>
+                        :
+                        <span class="sec">00</span>
+                    </span>
+                </div>
+
+                <div class="flags">
+                    flags : <span>2</span>
+                </div>
             </div>
 
-            <div class="flags">
-                flags : <span></span>
+            <div class="levels">
+                <button class="level" onclick="onClickLevel(4, 2)">Beginner (4x4)</button>
+                <button class="level" onclick="onClickLevel(8, 14)">Medium (8x8) </button>
+                <button class="level" onclick="onClickLevel(12, 32)">Expert (12x12)</button>
             </div>
 
-            <button class="level" onclick="onClickLevel(4, 2)">Beginner (4x4)</button>
-            <button class="level" onclick="onClickLevel(8, 14)">Medium (8x8) </button>
-            <button class="level" onclick="onClickLevel(12, 32)">Expert (12x12)</button>
-
-            <button class="restart" onclick="initGame()">Restart</button>
+            <div class="modal">
+                <p class="msg"> </p>
+                <p> Would you like to play again?</p>
+                <button class="restart" onclick="onInitGame()">Restart</button>
+            </div>
         </div>
 
         <table>
