@@ -1,5 +1,6 @@
 'use strict'
 
+
 function countNegs(cellI, cellJ, mat) {
     var negsCount = 0
     for (var i = cellI - 1; i <= cellI + 1; i++) {
@@ -14,6 +15,8 @@ function countNegs(cellI, cellJ, mat) {
     else return negsCount
 }
 
+
+
 function timer() {
     //sec
     var elSec = document.querySelector('.sec')
@@ -26,11 +29,13 @@ function timer() {
     if (currSec > 60) {
         currMin++
         elMin.innerText = currMin
+        //need to reset the sec
         currSec = 0
         elSec.innerText = currSec
     }
 
 }
+
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -38,25 +43,22 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function secondBoard(board) {
-    var newBoard = copyMat(board)
+
+function drawNum(array) {
+    var idx = getRandomInt(0, array.length)
+    var num = array[idx]
+    array.splice(idx, 1)
+    return num
+}
+
+
+function boardCells(board) {
+    var cells = []
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[0].length; j++) {
-            if (board[i][j].isMine) newBoard[i][j].isMine = false
+            var currCell = board[i][j]
+            cells.push(currCell)
         }
     }
-    console.log('newBoard:', newBoard)
-    return newBoard
+    return cells
 }
-
-function copyMat(mat) {
-    var newMat = []
-    for (var i = 0; i < mat.length; i++) {
-        newMat[i] = []
-        for (var j = 0; j < mat[0].length; j++) {
-            newMat[i][j] = mat[i][j]
-        }
-    }
-    return newMat
-}
-

@@ -4,6 +4,11 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+/* .continer {} */
+
+
+
+
 .continer {
     background-color: #5caefa9d;
     margin: 20px auto;
@@ -14,11 +19,24 @@ body {
 
 h1 {
     color: rgb(0, 0, 0);
+
 }
 
 hr {
     margin-bottom: 20px;
     border: 1px solid white;
+}
+
+
+.dark-mood {
+    width: 50px;
+    height: 47px;
+    font-size: 25px;
+    display: inline-block;
+    background-color: white;
+    border-color: aliceblue;
+    line-height: 20px;
+    margin-left: 50px;
 }
 
 .timer,
@@ -36,6 +54,7 @@ hr {
     height: 20px;
     width: 150px;
     padding: 10px;
+    margin-left: 100px;
 }
 
 .count-flags,
@@ -54,6 +73,7 @@ hr {
     font-size: 14px;
     border-radius: 5px;
     color: white;
+    /* border-color: white; */
 }
 
 .modal {
