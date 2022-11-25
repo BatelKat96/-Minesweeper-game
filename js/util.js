@@ -16,7 +16,6 @@ function countNegs(cellI, cellJ, mat) {
 }
 
 
-
 function timer() {
     //sec
     var elSec = document.querySelector('.sec')
@@ -61,4 +60,27 @@ function boardCells(board) {
         }
     }
     return cells
+}
+
+
+
+
+var totalSeconds = 0
+function timer() {
+    ++totalSeconds;
+    var elSec = document.querySelector('#seconds')
+    var elMin = document.querySelector('#minutes')
+    elSec.innerHTML = pad(totalSeconds % 60);
+    elMin.innerHTML = pad(parseInt(totalSeconds / 60));
+}
+
+
+function pad(val) {
+    var valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    }
+    else {
+        return valString;
+    }
 }

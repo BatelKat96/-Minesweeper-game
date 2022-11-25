@@ -15,15 +15,27 @@
             <h1>Mine Sweeper</h1>
             <hr>
             <div class="info">
-                <div class="timer">Timer: <span class="time">
-                        <span class="min">00</span>
-                        :
-                        <span class="sec">00</span>
+
+
+                <div class="best-score">Best Score: <span></span> </div>
+                <button class="dark-mood" onclick="darkMood(this)">🌛 </button>
+                <div class="timer"> Timer: <span class="time">
+                        <label id="minutes">00</label>
+                        <label id="colon">:</label>
+                        <label id="seconds">00</label>
                     </span>
                 </div>
 
 
-                <button class="dark-mood" onclick="darkMood(this)">🌛 </button>
+
+                <!-- <div class="timer">Timer: <span class="time">
+                        <span class="min">00</span>
+                        :
+                        <span class="sec">00</span>
+                    </span>
+                </div> -->
+
+
             </div>
 
             <div class="levels-continer">

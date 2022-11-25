@@ -4,10 +4,6 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* .continer {} */
-
-
-
 
 .continer {
     background-color: #5caefa9d;
@@ -28,17 +24,7 @@ hr {
 }
 
 
-.dark-mood {
-    width: 50px;
-    height: 47px;
-    font-size: 25px;
-    display: inline-block;
-    background-color: white;
-    border-color: aliceblue;
-    line-height: 20px;
-    margin-left: 50px;
-}
-
+.best-score,
 .timer,
 .count-flags,
 .count-lives {
@@ -49,12 +35,24 @@ hr {
     display: inline-block;
 }
 
+
+.dark-mood {
+    width: 50px;
+    height: 47px;
+    font-size: 25px;
+    display: inline-block;
+    background-color: white;
+    border-color: aliceblue;
+    line-height: 20px;
+}
+
+.best-score,
 .timer {
     margin: 10px;
     height: 20px;
-    width: 150px;
+    width: 180px;
     padding: 10px;
-    margin-left: 100px;
+    margin: 10px 30px;
 }
 
 .count-flags,
@@ -73,7 +71,6 @@ hr {
     font-size: 14px;
     border-radius: 5px;
     color: white;
-    /* border-color: white; */
 }
 
 .modal {

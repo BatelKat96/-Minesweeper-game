@@ -2,7 +2,6 @@
 
 
 function randomCellForMines(boardSize, minesNum, board) {
-
     var i = 0
     while (i < minesNum) {
         var cellI = getRandomInt(0, boardSize)
@@ -11,11 +10,9 @@ function randomCellForMines(boardSize, minesNum, board) {
 
         if (!cell.isMine && !cell.isShown) {
             cell.isMine = true
-            console.log('cell:', cell)
+            // console.log('cell:', cell)
             var elCell = document.querySelector(`[data-i="${cellI}"][data-j="${cellJ}"]`)
-
             elCell.classList.add('mine')
-
             i++
         }
     }
@@ -31,8 +28,7 @@ function setMinesNegsCount(i, j, board) {
 
 function showAllMines() {
     var elTdMine = document.querySelectorAll(`.mine`)
-    console.log('elTdMine:', elTdMine)
-
+    // console.log('elTdMine:', elTdMine)
     for (var i = 0; i < elTdMine.length; i++) {
         var elCell = elTdMine[i]
 

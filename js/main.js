@@ -1,21 +1,15 @@
 'use strict'
 
-// var cell ={
-//     minesAroundCount: 4, ///כמה מוקשים מסביב
-//     isShown: false,   ////האם התא חשוף
-//     isMine: false, // האם יש בו מוקש
-//     isMarked: true /// האם יש עליו דגל 
-// }
-
 var gBoard
 const MINE = ' 💣'
 const FLAG = '🚩'
 var gCell
-var inCell
+// var inCell
 var gTimeInterval
 var gFirstMove
 var nextId = 101
 var gIsDarkMood = false
+var gBestScore = 0
 
 var gLevel = {
     size: 4,
@@ -24,10 +18,10 @@ var gLevel = {
 }
 
 var gGame = {
-    isOn: false, // האם המשחק התחיל
-    shownCount: 0,  // כמה תאים נחשפו
-    markedCount: 0, // על כמה תאים יש דגל
-    secsPassed: 0 /// כמה זמןעבר מתחילת המשחק
+    isOn: false,
+    shownCount: 0,
+    markedCount: 0,
+    secsPassed: 0
 }
 
 
@@ -47,8 +41,8 @@ function onInitGame() {
 function htmlRestart() {
     var elModal = document.querySelector('.modal')
     elModal.style.display = 'none'
-    document.querySelector('.min').innerText = '00'
-    document.querySelector('.sec').innerText = '00'
+    document.querySelector('#minutes').innerText = '00'
+    document.querySelector('#seconds').innerText = '00'
 
     var elFlag = document.querySelector('.count-flags span')
     elFlag.innerText = gLevel.mines
@@ -125,7 +119,7 @@ function onCellClicked(elCell, i, j) {
         elCell.style.backgroundColor = 'black'
         var elLives = document.querySelector('.count-lives span')
         elLives.innerText--
-
+        // checkGameOver()
         if (elLives.innerText < 1) isVictory(false)
 
     } else {
@@ -138,7 +132,7 @@ function onCellClicked(elCell, i, j) {
 
     if (gGame.shownCount === (gLevel.size ** 2)) {
         checkGameOver()
-        clearInterval(gTimeInterval)
+        // clearInterval(gTimeInterval)
     }
 }
 
@@ -205,6 +199,9 @@ function onRightClick(elCell) {
 }
 
 function checkGameOver() {
+
+    // if (elLives.innerText < 1) return isVictory(false)
+
     var elTdMine = document.querySelectorAll(`.mine`)
     var elTdFlag = document.querySelectorAll(`.flag`)
 
@@ -223,7 +220,7 @@ function checkGameOver() {
 function isVictory(msg) {
     gGame.isOn = false
     clearInterval(gTimeInterval)
-
+    bestScore()
     var elModal = document.querySelector('.modal')
     var elBtn = document.querySelector('.restart')
     var elSapn = elModal.querySelector('span')
@@ -249,10 +246,10 @@ function onClickLevel(boardSize, minesNum, livesNum) {
 }
 
 function startTimer() {
-
     if (gFirstMove === 1) gTimeInterval = setInterval(timer, 1000)
 
     var elTimer = document.querySelector('.time')
+    console.log('elTime:', elTimer)
     gGame.secsPassed = (elTimer.innerText)
 }
 
@@ -262,6 +259,7 @@ function darkMood() {
     var elBody = document.querySelector('body')
     var elContiner = elBody.querySelector('.continer')
     var elLevel = elContiner.querySelectorAll('.level')
+
 
     if (gIsDarkMood) {
         elBody.style.backgroundColor = '#434546'
@@ -300,3 +298,15 @@ function boardCells(board) {
 }
 
 
+function bestScore() {
+    console.log('gGame.secsPassed:', gGame.secsPassed)
+
+    var gBestScore = gGame.secsPassed
+
+    var elBestScore = document.querySelector('.best-score span')
+    elBestScore.innerText = gBestScore
+    console.log('elBestScore:', elBestScore)
+
+    console.log('gBestScore:', gBestScore)
+
+}
