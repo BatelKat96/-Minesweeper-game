@@ -4,18 +4,12 @@ var gBoard
 const MINE = ' 💣'
 const FLAG = '🚩'
 var gCell
-// var inCell
 var gTimeInterval
-var gFirstMove
+var gCountMoves
 var nextId = 101
 var gIsDarkMood = false
-var gBestScore = 0
+var totalSeconds
 
-var gLevel = {
-    size: 4,
-    mines: 2,
-    lives: 2
-}
 
 var gGame = {
     isOn: false,
@@ -24,17 +18,22 @@ var gGame = {
     secsPassed: 0
 }
 
+var gLevel = {
+    size: 4,
+    mines: 2,
+    lives: 2,
+    bestScore: null
+}
 
 function onInitGame() {
     clearInterval(gTimeInterval)
+    totalSeconds = 0
     gGame.shownCount = 0
-    gFirstMove = 0
+    gCountMoves = 0
     htmlRestart()
 
     gBoard = createBoard()
     renderBoard(gBoard)
-    console.log('gBoard:', gBoard)
-
     gGame.isOn = true
 }
 
@@ -52,6 +51,9 @@ function htmlRestart() {
 
     var elbtn = document.querySelector('.restart')
     elbtn.innerText = '😄'
+
+    var elBestScore = document.querySelector('.best-score span')
+    elBestScore.innerText = localStorage.getItem('gLevel.bestScore')
 }
 
 function createBoard() {
@@ -70,7 +72,6 @@ function createBoard() {
             board[i][j] = gCell
         }
     }
-    // randomCellForMines(gLevel.size, gLevel.mines, board)
     return board
 }
 
@@ -98,16 +99,12 @@ function onCellClicked(elCell, i, j) {
     if (!gGame.isOn) return
     if (currCell.isShown) return
     if (currCell.isMarked) return
-    console.log('gFirstMove:', gFirstMove)
 
-    if (gFirstMove === 1) {
-        randomCellForMines(gLevel.size, gLevel.mines, gBoard)
-        console.log('gBoard:', gBoard)
-
-    }
-
+    // if (gCountMoves === 1) {
+    //     randomCellForMines(gLevel.size, gLevel.mines, gBoard)
+    // }
     gGame.shownCount++
-    gFirstMove++
+    gCountMoves++
     startTimer()
 
     //model
@@ -119,7 +116,7 @@ function onCellClicked(elCell, i, j) {
         elCell.style.backgroundColor = 'black'
         var elLives = document.querySelector('.count-lives span')
         elLives.innerText--
-        // checkGameOver()
+
         if (elLives.innerText < 1) isVictory(false)
 
     } else {
@@ -132,11 +129,10 @@ function onCellClicked(elCell, i, j) {
 
     if (gGame.shownCount === (gLevel.size ** 2)) {
         checkGameOver()
-        // clearInterval(gTimeInterval)
     }
 }
 
-function expandShown(mat, elCell, cellI, cellJ,) {
+function expandShown(mat, elCell, cellI, cellJ) {
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         if (i < 0 || i >= mat.length) continue
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
@@ -144,6 +140,8 @@ function expandShown(mat, elCell, cellI, cellJ,) {
             if (i === cellI && j === cellJ) continue
             if (mat[i][j].isShown) continue
             if (mat[i][j].isMarked) continue
+            if (mat[i][j].isMine) continue
+
             // Update the model :
             mat[i][j].isShown = true
 
@@ -152,6 +150,16 @@ function expandShown(mat, elCell, cellI, cellJ,) {
             elTd.style.backgroundColor = '#b1bac3'
             elTd.innerText = setMinesNegsCount(i, j, gBoard)
             gGame.shownCount++
+
+            if (gCountMoves === 1) {
+                randomCellForMines(gLevel.size, gLevel.mines, gBoard)
+                gCountMoves++
+            }
+
+            var countNeg = setMinesNegsCount(i, j, gBoard)
+            if (gCountMoves > 1 && !countNeg) {
+                expandShown(mat, elCell, i, j)
+            }
 
         }
     }
@@ -166,7 +174,7 @@ function onRightClick(elCell) {
 
     var currCell = gBoard[cellI][cellJ]
     if (currCell.isShown) return
-    gFirstMove++
+    gCountMoves++
     startTimer()
 
     var elFlag = document.querySelector('.count-flags span')
@@ -178,7 +186,6 @@ function onRightClick(elCell) {
 
         //dom
         elCell.innerText = FLAG
-        // console.log('gBoard:', gBoard)
         elFlag.innerText--
         gGame.markedCount++
         gGame.shownCount++
@@ -193,40 +200,32 @@ function onRightClick(elCell) {
         gGame.shownCount--
 
     }
-    console.log('gGame.shownCount:', gGame.shownCount)
-
     currCell.isMarked = !currCell.isMarked
 }
 
 function checkGameOver() {
-
-    // if (elLives.innerText < 1) return isVictory(false)
-
     var elTdMine = document.querySelectorAll(`.mine`)
     var elTdFlag = document.querySelectorAll(`.flag`)
 
     for (var i = 0; i < elTdMine.length; i++) {
         if (elTdFlag[i].dataset.i !== elTdMine[i].dataset.i ||
             elTdFlag[i].dataset.j !== elTdMine[i].dataset.j) {
-            // console.log('lose:')
             return isVictory(false)
         }
     }
-    // console.log('win:')
     return isVictory(true)
-
 }
 
 function isVictory(msg) {
     gGame.isOn = false
     clearInterval(gTimeInterval)
-    bestScore()
+
     var elModal = document.querySelector('.modal')
     var elBtn = document.querySelector('.restart')
     var elSapn = elModal.querySelector('span')
-    console.log('elbtn:', elBtn)
 
     if (msg) {
+        bestScoreForLevel()
         elSapn.innerText = 'You won!'
         elBtn.innerText = '🤩'
     } else {
@@ -237,19 +236,18 @@ function isVictory(msg) {
     elModal.style.display = 'block'
 }
 
-function onClickLevel(boardSize, minesNum, livesNum) {
+function onClickLevel(boardSize, minesNum, livesNum, bestScores) {
     gLevel.size = boardSize
     gLevel.mines = minesNum
     gLevel.lives = livesNum
+    gLevel.bestScore = bestScores
 
     onInitGame()
 }
 
 function startTimer() {
-    if (gFirstMove === 1) gTimeInterval = setInterval(timer, 1000)
-
+    if (gCountMoves === 1) gTimeInterval = setInterval(timer, 1000)
     var elTimer = document.querySelector('.time')
-    console.log('elTime:', elTimer)
     gGame.secsPassed = (elTimer.innerText)
 }
 
@@ -259,7 +257,6 @@ function darkMood() {
     var elBody = document.querySelector('body')
     var elContiner = elBody.querySelector('.continer')
     var elLevel = elContiner.querySelectorAll('.level')
-
 
     if (gIsDarkMood) {
         elBody.style.backgroundColor = '#434546'
@@ -298,15 +295,14 @@ function boardCells(board) {
 }
 
 
-function bestScore() {
-    console.log('gGame.secsPassed:', gGame.secsPassed)
+function bestScoreForLevel() {
+    if (gLevel.bestScore === null || gLevel.bestScore > gGame.secsPassed) {
+        gLevel.bestScore = gGame.secsPassed
+        localStorage.setItem('gLevel.bestScore', gGame.secsPassed)
 
-    var gBestScore = gGame.secsPassed
-
-    var elBestScore = document.querySelector('.best-score span')
-    elBestScore.innerText = gBestScore
-    console.log('elBestScore:', elBestScore)
-
-    console.log('gBestScore:', gBestScore)
-
+        // dom
+        var elBestScore = document.querySelector('.best-score span')
+        var elTimer = document.querySelector('.time')
+        elBestScore.innerText = (elTimer.innerText)
+    }
 }

@@ -15,27 +15,6 @@ function countNegs(cellI, cellJ, mat) {
     else return negsCount
 }
 
-
-function timer() {
-    //sec
-    var elSec = document.querySelector('.sec')
-    var currSec = elSec.innerText
-    currSec++
-    elSec.innerText = currSec
-    //min
-    var elMin = document.querySelector('.min')
-    var currMin = elMin.innerText
-    if (currSec > 60) {
-        currMin++
-        elMin.innerText = currMin
-        //need to reset the sec
-        currSec = 0
-        elSec.innerText = currSec
-    }
-
-}
-
-
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -62,10 +41,6 @@ function boardCells(board) {
     return cells
 }
 
-
-
-
-var totalSeconds = 0
 function timer() {
     ++totalSeconds;
     var elSec = document.querySelector('#seconds')

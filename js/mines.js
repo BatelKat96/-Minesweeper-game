@@ -10,7 +10,6 @@ function randomCellForMines(boardSize, minesNum, board) {
 
         if (!cell.isMine && !cell.isShown) {
             cell.isMine = true
-            // console.log('cell:', cell)
             var elCell = document.querySelector(`[data-i="${cellI}"][data-j="${cellJ}"]`)
             elCell.classList.add('mine')
             i++
@@ -18,17 +17,14 @@ function randomCellForMines(boardSize, minesNum, board) {
     }
 }
 
-
 function setMinesNegsCount(i, j, board) {
     var cell = board[i][j]
     cell.minesAroundCount = countNegs(i, j, board)
     return cell.minesAroundCount
 }
 
-
 function showAllMines() {
     var elTdMine = document.querySelectorAll(`.mine`)
-    // console.log('elTdMine:', elTdMine)
     for (var i = 0; i < elTdMine.length; i++) {
         var elCell = elTdMine[i]
 
@@ -47,7 +43,6 @@ function showAllMines() {
             elCell.innerText = MINE
             elCell.style.backgroundColor = '#b1bac3'
         }
-
     }
 }
 

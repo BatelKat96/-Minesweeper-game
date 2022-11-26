@@ -26,22 +26,15 @@
                     </span>
                 </div>
 
-
-
-                <!-- <div class="timer">Timer: <span class="time">
-                        <span class="min">00</span>
-                        :
-                        <span class="sec">00</span>
-                    </span>
-                </div> -->
-
-
             </div>
 
             <div class="levels-continer">
-                <button class="level" onclick="onClickLevel(4, 2, 1)">Beginner (4x4)</button>
-                <button class="level" onclick="onClickLevel(8, 14, 3)">Medium (8x8) </button>
-                <button class="level" onclick="onClickLevel(12, 32, 3)">Expert (12x12)</button>
+                <button class="level" onclick="onClickLevel(4, 2, 1, localStorage.getItem('gLevel.bestScore'))">Beginner
+                    (4x4)</button>
+                <button class="level" onclick="onClickLevel(8, 14, 3, localStorage.getItem('gLevel.bestScore'))">Medium
+                    (8x8) </button>
+                <button class="level" onclick="onClickLevel(12, 32, 3, localStorage.getItem('gLevel.bestScore'))">Expert
+                    (12x12)</button>
             </div>
 
             <div class="count-flags">
